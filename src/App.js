@@ -1,23 +1,26 @@
-import logo from './logo.svg';
+import {Routes, Route} from 'react-router-dom';
+import Catalogue from './Catalogue';
+import MovieDetails from './MovieDetails'
+import ErrorPage from './ErrorPage';
 import './App.css';
 
+
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="wrapper">
+      <header>
+        <h1>Hackflix</h1>
       </header>
+      {/* Create paths allowing to render different things depending on URL */}
+      <Routes>
+        {/* Show catalogue on default page */}
+        <Route path="/" element={ <Catalogue /> } />
+        {/* show the MovieDetails component on /movie/:movieID, passing it the movie ID */}
+        <Route path="/movie/:movieID" element={ <MovieDetails /> } />
+        {/* show the ErrorPage for routes that don't exist */}
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
     </div>
   );
 }
